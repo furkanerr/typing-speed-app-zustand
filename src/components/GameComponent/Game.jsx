@@ -3,7 +3,7 @@ import useStore from "../../store/useStore";
 import styles from "./Game.module.css";
 
 const Game = () => {
-  const { textData, fetchText } = useStore((state) => state);
+  const { textData, fetchText, checkIfCorrect,reStartTheGame } = useStore((state) => state);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [userInput, setUserInput] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState([]);
@@ -18,6 +18,9 @@ const Game = () => {
     if (currentWordIndex && fieldRef.current) {
       fieldRef.current.scrollIntoView();
     }
+    if (correctAnswer.length > 0) {
+      checkIfCorrect(correctAnswer[currentWordIndex - 1]);
+    }
   }, [currentWordIndex]);
 
   const handleChange = (value) => {
@@ -28,6 +31,7 @@ const Game = () => {
         newResult[currentWordIndex] = word === textData[currentWordIndex];
         return newResult;
       });
+
       console.log(correctAnswer);
       setCurrentWordIndex((prev) => prev + 1);
       setUserInput("");
@@ -35,6 +39,14 @@ const Game = () => {
       setUserInput(value);
     }
   };
+
+  const handleReStartClick = () => {
+    setCurrentWordIndex(0);
+    setUserInput("");
+    setCorrectAnswer([]);
+    reStartTheGame();
+    fetchText();
+  }
 
   return (
     <div className={styles.Container}>
@@ -85,7 +97,7 @@ const Game = () => {
           onChange={(e) => handleChange(e.target.value)}
         />
         <div className={styles.timer}>Timer</div>
-        <div className={styles.reStart}>Restart</div>
+        <div className={styles.reStart} onClick={()=>handleReStartClick()}>Restart</div>
       </div>
     </div>
   );
