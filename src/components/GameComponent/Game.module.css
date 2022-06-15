@@ -1,0 +1,82 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin-top: 50px;
+  
+}
+.textArea{
+    width: 100%;
+    padding: 6px 12px 30px 12px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border: 1px solid #8eb6d8;
+    height: 80px;
+    overflow: hidden;
+    color: #1d4851;
+    background-color: white;
+    font-family: Times New Roman, Times, serif;
+    font-size: 2.2em;
+    line-height: 1.6em;
+    border-radius: 4px;
+    text-align: left;
+
+}
+
+.InputandTimer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+   background-color: #a7c8e7;
+   margin:10px;
+   padding: 10px;
+   gap: 1rem;
+   border-radius: 2px;
+}
+.input{
+    border-top: 1px solid #575757;
+    height: 50px;
+    border-right: 1px solid #6b7a89;
+    border-bottom: 1px solid #70869b;
+    border-left: 1px solid #525a62;
+    font-size: 2em;
+    line-height: 1em;
+    background: url(https://img.10fastfingers.com/img/layout/sprite-main.png) 0px -60px no-repeat;
+    font-family: Times New Roman, Times, serif;
+    color: #333;
+
+}
+.input:focus{
+    outline: none;
+}
+
+.current{
+    font-weight: bold;
+    background-color: #1b434b84;
+}
+.Wrong{
+    color:red
+}
+.Correct{
+    color:green
+}
+
+.reStart{
+    font-size: 1rem;
+    line-height: 1rem;
+    background-color: #1b434b84;
+    color: white;
+    border: 1px solid #1b434b84;
+    border-radius: 2px;
+    padding: 0.5rem 1rem;
+   transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+}
+.reStart:hover{
+  transform: scale(1.1);
+}
