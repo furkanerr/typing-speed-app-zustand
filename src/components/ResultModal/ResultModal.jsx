@@ -22,15 +22,15 @@ const ResultModal = ({isOpen,setIsOpen,setCorrectAnswer,setUserInput,setCurrentW
 
       useState(()=>{
         
-        setPercentage((correctAnswers / (correctAnswers + wrongAnswers)) * 100);
+        setPercentage(Math.round((correctAnswers / (correctAnswers + wrongAnswers)) * 100));
 
       },[correctAnswers,wrongAnswers])
   return (
     <div className={styles.Container}>
       <div className={styles.header}>Results</div>
-        <div className={styles.percent}>{percentage} %</div>
-        <div className={styles.correct}>{correctAnswers}</div>
-        <div className={styles.wrong}>{wrongAnswers}</div>
+        <div className={styles.percent}>{percentage}%</div>
+        <div className={styles.correct}>{correctAnswers} Correct</div>
+        <div className={styles.wrong}>{wrongAnswers} Wrong</div>
         <div className={styles.reStartButton} onClick={handleClose}>Restart</div>
     </div>
   )
