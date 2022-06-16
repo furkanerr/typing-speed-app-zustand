@@ -3,10 +3,18 @@ import useStore from "../../store/useStore";
 import styles from "./Game.module.css";
 
 const Game = () => {
-  const { textData, fetchText, checkIfCorrect,reStartTheGame } = useStore((state) => state);
+  const {
+    textData,
+    fetchText,
+    checkIfCorrect,
+    reStartTheGame,
+    myTimer,
+    duration,
+  } = useStore((state) => state);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [userInput, setUserInput] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState([]);
+  const [keyDown,setKeyDown]  = useState(false);
 
   useEffect(() => {
     fetchText();
@@ -46,7 +54,16 @@ const Game = () => {
     setCorrectAnswer([]);
     reStartTheGame();
     fetchText();
-  }
+  };
+
+  const handleKeyDown = () => {
+    if(!keyDown){
+      myTimer();
+      setKeyDown(true);
+    }
+    
+
+  };
 
   return (
     <div className={styles.Container}>
@@ -95,9 +112,12 @@ const Game = () => {
           placeholder="Start typing"
           value={userInput}
           onChange={(e) => handleChange(e.target.value)}
+          onKeyDown={() => handleKeyDown()}
         />
-        <div className={styles.timer}>Timer</div>
-        <div className={styles.reStart} onClick={()=>handleReStartClick()}>Restart</div>
+        <div className={styles.timer}>{duration}</div>
+        <div className={styles.reStart} onClick={() => handleReStartClick()}>
+          Restart
+        </div>
       </div>
     </div>
   );

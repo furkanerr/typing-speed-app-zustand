@@ -13,8 +13,13 @@ const createGameSlice = (set, get) => ({
     console.log(get().correctAnswers);
     console.log(get().wrongAnswers);
   },
-  timer: () => {
-    set({ duration: get().duration - 1 });
+  myTimer: () => {
+    let timer = setInterval(() => {
+    set({ duration: get().duration - 1 })
+    if (get().duration === 0) {
+      clearInterval(timer);
+    }
+    }, 1000);
   },
   reStartTheGame: () => {
     set({ duration: 60, correctAnswers: 0, wrongAnswers: 0 });
