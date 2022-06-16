@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import useStore from "../../store/useStore";
+import ResultModal from "../ResultModal/ResultModal";
 import styles from "./Game.module.css";
 
 const Game = () => {
@@ -15,12 +16,22 @@ const Game = () => {
   const [userInput, setUserInput] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState([]);
   const [keyDown,setKeyDown]  = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const fieldRef = useRef(null);
+ 
+
 
   useEffect(() => {
     fetchText();
   }, [fetchText]);
 
-  const fieldRef = useRef(null);
+  useEffect(() => {
+    if(duration===0){
+      setIsOpen(true);
+    }
+  }
+  ,[duration])
+
 
   useEffect(() => {
     if (currentWordIndex && fieldRef.current) {
@@ -67,6 +78,19 @@ const Game = () => {
 
   return (
     <div className={styles.Container}>
+      {
+        isOpen ? (
+          <ResultModal isOpen={isOpen}
+           setIsOpen={setIsOpen}
+            setCurrentWordIndex={setCurrentWordIndex}
+            setUserInput={setUserInput}
+            setCorrectAnswer={setCorrectAnswer}
+            setKeyDown={setKeyDown}
+
+            />
+        ) : null
+      }
+      
       <div className={styles.textArea}>
         {textData.map((text, index) => {
           if (correctAnswer[index] === true)

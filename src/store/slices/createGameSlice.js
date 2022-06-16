@@ -10,10 +10,10 @@ const createGameSlice = (set, get) => ({
     } else {
       set({ wrongAnswers: get().wrongAnswers + 1 });
     }
-    console.log(get().correctAnswers);
-    console.log(get().wrongAnswers);
+ 
   },
   myTimer: () => {
+    console.log("myTimer");
     let timer = setInterval(() => {
     set({ duration: get().duration - 1 })
     if (get().duration === 0) {
