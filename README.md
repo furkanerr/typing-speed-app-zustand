@@ -1,3 +1,17 @@
+ # Live:https://typing-speed-app-zustand.vercel.app/
+ 
+ -----------
+  ### This is a typing speed game.
+ * ## State managament handled by Zustand.
+ * Type the text in 60 seconds.
+ * After the 60 seconds you will have the results.
+ * Texts are fetching with Axios from an API.
+ 
+ 
+
+ 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
